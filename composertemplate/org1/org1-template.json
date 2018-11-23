@@ -1,0 +1,150 @@
+{
+    "name": "org1",
+    "x-type": "hlfv1",
+    "version": "1.0.0",
+    "client": {
+        "organization": "Org1",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300",
+                    "eventHub": "300",
+                    "eventReg": "300"
+                },
+                "orderer": "300"
+            }
+        }
+    },
+    "channels": {
+        "mychannel": {
+            "orderers": [
+                "orderer.example.com"
+            ],
+            "peers": {
+                "peer0.org1.example.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "eventSource": true
+                },
+                "peer1.org1.example.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "eventSource": true
+                },
+                "peer0.org2.example.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "eventSource": true
+                },
+                "peer1.org2.example.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "eventSource": true
+                }
+            }
+        }
+    },
+    "organizations": {
+        "Org1": {
+            "mspid": "Org1MSP",
+            "peers": [
+                "peer0.org1.example.com",
+                "peer1.org1.example.com"
+            ],
+            "certificateAuthorities": [
+                "ca0",
+				"ca1"
+            ]
+        },
+        "Org2": {
+            "mspid": "Org2MSP",
+            "peers": [
+                "peer0.org2.example.com",
+                "peer1.org2.example.com"
+            ],
+            "certificateAuthorities": [
+                "ca2",
+				"ca3"
+            ]
+        }
+    },
+    "orderers": {
+        "orderer.example.com": {
+            "url": "grpcs://PC1:7050",
+            "grpcOptions": {
+                "ssl-target-name-override": "orderer.example.com"
+            },
+            "tlsCACerts": {
+                "pem": "INSERT_ORDERER_CA_CERT"
+            }
+        }
+    },
+    "peers": {
+        "peer0.org1.example.com": {
+            "url": "grpcs://PC1:7051",
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.org1.example.com"
+            },
+            "tlsCACerts": {
+                "pem": "INSERT_ORG1_CA_CERT"
+            }
+        },
+        "peer1.org1.example.com": {
+            "url": "grpcs://PC2:7051",
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.org1.example.com"
+            },
+            "tlsCACerts": {
+                "pem": "INSERT_ORG1_CA_CERT"
+            }
+        },
+        "peer0.org2.example.com": {
+            "url": "grpcs://PC3:7051",
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.org2.example.com"
+            },
+            "tlsCACerts": {
+                "pem": "INSERT_ORG2_CA_CERT"
+            }
+        },
+        "peer1.org2.example.com": {
+            "url": "grpcs://PC4:7051",
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.org2.example.com"
+            },
+            "tlsCACerts": {
+                "pem": "INSERT_ORG2_CA_CERT"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca0": {
+            "url": "https://PC1:7054",
+            "caName": "ca0",
+            "httpOptions": {
+                "verify": false
+            }
+        },
+		"ca1": {
+            "url": "https://PC2:7054",
+            "caName": "ca1",
+            "httpOptions": {
+                "verify": false
+            }
+        },
+        "ca2": {
+            "url": "https://PC3:7054",
+            "caName": "ca2",
+            "httpOptions": {
+                "verify": false
+            }
+        },
+        "ca3": {
+            "url": "https://PC4:7054",
+            "caName": "ca3",
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}
